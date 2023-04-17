@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <math.h>
+
+int p0 = 1.007;//单位是kp
+
+float atmospheric()//输入气压的函数 返回的是gama
+{
+	float x, y, p1, p2, gama;
+	printf("请输入p1~的数据和p2~的数据：");
+	scanf_s("%f%f", &x, &y);
+	p1 = 1.007 + (x / 2000);
+	p2 = 1.007 + (y / 2000);
+	gama = ((log(p1 / p0)) / (log(p1 / p2)));
+	printf("p1=%f\t", p1); printf("p2=%f\t", p2); printf("伽马=%f\t", gama);
+	return gama;
+}
+
+int main()
+{   
+	int i;
+	float average_gama, add = 0,u,u1; 
+	float gama[6];//储存gama
+	for (i = 0; i <= 5; i++)
+	{
+		gama[i] = atmospheric();
+		printf("\n");
+		add = add + gama[i];
+	}
+	average_gama = add / 6;
+	u = sqrt(add / 5);
+	u1 = u / average_gama;
+	printf("average_gama=%f\n", average_gama);
+	printf("u=%f\n",u); 
+	printf("u1=%f",u1);
+}
