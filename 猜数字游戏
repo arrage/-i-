@@ -1,0 +1,30 @@
+#include <stdio.h>//简单的猜数字游戏，但数字是固定的，只能在程序中修改而做不到随机数
+
+int main()
+{
+	int x=0, i,p;
+	printf("游戏开始！请选择难度：难度1；难度2；难度3\n");
+	scanf_s("%d", &i);
+	switch (i)
+	{
+	case 1: {x = 123; printf("请在200内找出规定数字\n"); break; }
+	case 2: {x = 556; printf("请在1000内找出规定数字\n");  break; }
+	case 3: {x = 56.45; printf("请在100及其小数点后两位内找出规定数字\n");  break; }
+	default: {break; }
+	}
+	for (;;)
+	{
+		printf("请输入数字：");
+		scanf_s("%d", &p);
+		if (p > x)
+			printf("比规定数字要大，请继续\n");
+		if (p < x)
+			printf("比规定数字要小，请继续\n");
+		if (p == x)
+		{
+			printf("恭喜你获得胜利\n");
+			break;
+		}
+	}
+	return 0;
+}
